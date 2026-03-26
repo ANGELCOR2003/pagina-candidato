@@ -1,0 +1,156 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="gotham-black">
+        {% if mode == "edit" %}Editar noticia{% else %}Nueva noticia{% endif %}
+      </h2>
+
+      <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px">
+        <a class="btn btn-ghost gotham-medium" href="{{ url_for('admin_news_list') }}">← Volver a noticias</a>
+        <a class="btn btn-ghost gotham-medium" href="{{ url_for('admin_dashboard') }}">Dashboard</a>
+      </div>
+    </div>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="alerts">
+          {% for category, message in messages %}
+            <div class="alert {{ category }}">{{ message }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <div class="card" style="padding:18px">
+      <form
+        method="POST"
+        enctype="multipart/form-data"
+        action="{% if mode == 'edit' %}{{ url_for('admin_news_edit', item_id=item.id) }}{% else %}{{ url_for('admin_news_new') }}{% endif %}"
+      >
+        <div style="display:grid; gap:14px; max-width:760px">
+
+          <div>
+            <label class="gotham-bold">Título</label>
+            <input
+              class="input"
+              name="titulo"
+              required
+              value="{{ item.titulo if item else '' }}"
+              placeholder="Ej: Reunión con dirigentes comunales"
+            >
+          </div>
+
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:14px">
+            <div>
+              <label class="gotham-bold">Fecha</label>
+              <!-- La fecha se pone automáticamente si es NUEVA.
+                   En EDIT se muestra la guardada. -->
+              <input
+                id="fecha"
+                class="input"
+                type="date"
+                name="fecha"
+                value="{{ item.fecha if item else '' }}"
+                {% if mode != "edit" %}readonly{% endif %}
+              >
+              <div class="muted small" style="margin-top:6px">
+                {% if mode != "edit" %}
+                  Se asigna automáticamente con la fecha de hoy.
+                {% else %}
+                  Puedes cambiarla si lo necesitas.
+                {% endif %}
+              </div>
+            </div>
+
+            <div>
+              <label class="gotham-bold">Tag</label>
+              <input
+                class="input"
+                name="tag"
+                value="{{ item.tag if item else 'Actualidad' }}"
+                placeholder="Actualidad"
+              >
+            </div>
+          </div>
+
+          <div>
+            <label class="gotham-bold">Resumen</label>
+            <textarea
+              class="textarea"
+              name="resumen"
+              rows="5"
+              required
+              placeholder="Resumen corto de la noticia..."
+            >{{ item.resumen if item else '' }}</textarea>
+          </div>
+
+          <div>
+            <label class="gotham-bold">Media (foto o video)</label>
+            <div class="muted small" style="margin:6px 0 8px">
+              Puedes subir un archivo o pegar un link. Si subes archivo, el archivo gana.
+            </div>
+
+            <input class="input" type="file" name="media_file" accept="image/*,video/*">
+
+            <label class="muted small" style="margin-top:10px; display:block;">
+              O link (URL) de imagen/video (opcional)
+            </label>
+            <input
+              class="input"
+              type="url"
+              name="media_url"
+              placeholder="https://..."
+              value="{{ item.media_url if item else '' }}"
+            >
+
+            {% if mode == "edit" and item %}
+              <div class="muted small" style="margin-top:10px">
+                <b>Actual:</b>
+                {% if item.media_type == "image" and item.media_path %}
+                  Imagen subida: <code>{{ item.media_path }}</code>
+                {% elif item.media_type == "video" and item.media_path %}
+                  Video subido: <code>{{ item.media_path }}</code>
+                {% elif item.media_type == "link" and item.media_url %}
+                  Link: <code>{{ item.media_url }}</code>
+                {% else %}
+                  (sin media)
+                {% endif %}
+              </div>
+            {% endif %}
+          </div>
+
+          <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:8px">
+            <button class="btn btn-primary gotham-bold" type="submit">
+              {% if mode == "edit" %}Guardar cambios{% else %}Crear noticia{% endif %}
+            </button>
+            <a class="btn btn-ghost gotham-medium" href="{{ url_for('admin_news_list') }}">Cancelar</a>
+          </div>
+
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Fecha automática solo en NUEVA noticia
+  (function () {
+    const isEdit = "{{ mode }}" === "edit";
+    if (isEdit) return;
+
+    const el = document.getElementById("fecha");
+    if (!el) return;
+
+    if (!el.value) {
+      const d = new Date();
+      const yyyy = d.getFullYear();
+      const mm = String(d.getMonth() + 1).padStart(2, "0");
+      const dd = String(d.getDate()).padStart(2, "0");
+      el.value = `${yyyy}-${mm}-${dd}`;
+    }
+  })();
+</script>
+{% endblock %}

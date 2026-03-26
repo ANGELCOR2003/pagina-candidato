@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ title or "Renovación Popular | Landing" }}</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+
+<body class="{{ body_class }} {% if request.path.startswith('/admin') %}is-admin{% endif %}">
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-row">
+      <a class="brand" href="#top" aria-label="Ir al inicio"> 
+        <img
+          class="brand-logo"
+          src="{{ url_for('static', filename='img/LOGO_RENOVACIÓN.png') }}"
+          alt="Logo Renovación Popular"
+        >
+        <span class="brand-text gotham-ultra-italic">Renovación Popular</span>
+      </a>
+
+      <nav class="nav-desktop" aria-label="Navegación principal">
+        <a class="gotham-medium" href="#mision">Misión</a>
+        <a class="gotham-medium" href="#mandamientos">Principales ejes</a>
+        <a class="gotham-medium" href="#manifiesto">Manifiesto</a>
+        <a class="gotham-medium" href="#voluntario">Voluntarios</a>
+        <a class="gotham-medium" href="#noticias">Noticias</a>
+        <a class="btn btn-primary gotham-medium" href="#contacto">Contacto</a>
+      </nav>
+
+      <button class="burger" id="burgerBtn" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <!-- Overlay mobile menu -->
+    <div class="overlay" id="overlay" aria-hidden="true">
+      <div class="overlay-panel">
+        <div class="overlay-top">
+          <span class="overlay-title">Menú</span>
+          <button class="overlay-close" id="overlayClose" aria-label="Cerrar menú">✕</button>
+        </div>
+        <div class="overlay-links">
+          <a href="#mision" class="overlay-link">Misión</a>
+          <a href="#mandamientos" class="overlay-link">10 Mandamientos</a>
+          <a href="#manifiesto" class="overlay-link">Manifiesto</a>
+          <a href="#voluntario" class="overlay-link">Voluntarios</a>
+          <a href="#testimonios" class="overlay-link">Testimonios</a>
+          <a href="#noticias" class="overlay-link">Noticias</a>
+          <a href="#contacto" class="overlay-link overlay-cta">Contacto</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <div class="footer-brand">Renovación Popular</div>
+      </div>
+
+      <div>
+        <div class="footer-title">Enlaces</div>
+        <ul class="footer-links">
+          <li><a href="#mision">Misión</a></li>
+          <li><a href="#mandamientos">10 Mandamientos</a></li>
+          <li><a href="#manifiesto">Manifiesto</a></li>
+          <li><a href="#voluntario">Voluntarios</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-title">Contacto</div>
+        <ul class="footer-links">
+          <li><a href="#contacto">Formulario</a></li>
+          <li><a href="#">Términos</a></li>
+          <li><a href="#">Privacidad</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <span class="muted">© {{ 2026 }} Renovación Popular</span>
+      <a class="muted" href="#top">Volver arriba ↑</a>
+    </div>
+  </footer>
+
+  <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+</body>
+</html>

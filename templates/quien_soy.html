@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="section">
+  <div class="container">
+<body class="page-quien-soy"></body>
+    <div class="section-head">
+      <h1 class="gotham-ultra">PERCI RIVAS</h1>
+      <h2 class="accent gotham-black">Diputado por Ayacucho</h2>
+      <p class="muted gotham-book">
+        Dios · Patria · Familia
+      </p>
+    </div>
+ <section class="perfil">
+  <div class="perfil-grid">
+
+    <!-- IZQUIERDA -->
+    <div class="perfil-content">
+      <div class="cards-grid">
+
+      <article class="card">
+        <h3 class="gotham-bold">¿Quién soy?</h3>
+        <p class="gotham-book">
+          Soy Perci Rivas, ayacuchano, profesional y servidor público comprometido
+          con una política responsable, técnica y cercana a la ciudadanía.
+        </p>
+      </article>
+
+      <article class="card">
+        <h3 class="gotham-bold">Trayectoria</h3>
+        <p class="gotham-book">
+          He trabajado en gestión pública y articulación territorial, impulsando
+          iniciativas orientadas a resultados concretos, inversión pública y
+          fortalecimiento institucional.
+        </p>
+      </article>
+
+      <article class="card">
+        <h3 class="gotham-bold">Compromiso con Ayacucho</h3>
+        <p class="gotham-book">
+          Mi compromiso es representar a Ayacucho con firmeza en el Congreso,
+          defendiendo proyectos que generen desarrollo, empleo y oportunidades
+          reales para nuestras familias.
+        </p>
+      </article>
+
+      <article class="card">
+        <h3 class="gotham-bold">Principios</h3>
+        <ul class="bullets gotham-book">
+          <li>Dios, Patria y Familia</li>
+          <li>Orden y respeto a la ley</li>
+          <li>Trabajo honesto</li>
+          <li>Transparencia y rendición de cuentas</li>
+        </ul>
+      </article>
+
+    </div>
+    </div>
+
+    <!-- DERECHA -->
+    <div class="perfil-media">
+      <img src="{{ url_for('static', filename='img/QUIEN SOY.png') }}" alt="Perci Rivas">
+    </div>
+
+  </div>
+</section>
+    
+
+    <div style="margin-top:30px">
+      <a href="{{ url_for('index') }}" class="btn btn-primary gotham-bold">
+        Volver a la página principal
+      </a>
+    </div>
+
+  </div>
+</section>
+{% endblock %}

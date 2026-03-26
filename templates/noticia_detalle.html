@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="section">
+  <div class="container">
+    <a class="link" href="{{ url_for('index') }}">← Volver</a>
+
+    <div class="card" style="margin-top:12px; overflow:hidden; padding:0;">
+      {% if noticia.media_path %}
+        <div class="news-img" style="height:320px; background-image:url('{{ url_for('static', filename=noticia.media_path) }}');"></div>
+      {% elif noticia.imagen %}
+        <div class="news-img" style="height:320px; background-image:url('{{ url_for('static', filename='img/' ~ noticia.imagen) }}');"></div>
+      {% endif %}
+
+      <div class="news-body">
+        <div class="news-top">
+          <span class="tag">{{ noticia.tag }}</span>
+          <span class="muted small">{{ noticia.fecha }}</span>
+        </div>
+
+        <h1 class="news-title" style="font-size:1.7rem; margin-top:12px;">{{ noticia.titulo }}</h1>
+
+        <p class="muted" style="font-size:1.05rem; line-height:1.6;">
+          {{ noticia.resumen }}
+        </p>
+
+        {# Si luego agregas campo "contenido" a la tabla News, aquí lo muestras #}
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <h2>Más noticias</h2>
+      <p class="muted">Ordenadas de la más reciente a la más antigua.</p>
+    </div>
+
+    <div class="news-grid">
+      {% for n in otras %}
+      <article class="news-card">
+        {% if n.media_path %}
+          <div class="news-img" style="background-image:url('{{ url_for('static', filename=n.media_path) }}');"></div>
+        {% elif n.imagen %}
+          <div class="news-img" style="background-image:url('{{ url_for('static', filename='img/' ~ n.imagen) }}');"></div>
+        {% endif %}
+
+        <div class="news-body">
+          <div class="news-top">
+            <span class="tag">{{ n.tag }}</span>
+            <span class="muted small">{{ n.fecha }}</span>
+          </div>
+          <h3 class="news-title">{{ n.titulo }}</h3>
+          <p class="muted">{{ n.resumen }}</p>
+          <a class="link" href="{{ url_for('noticia_detalle', noticia_id=n.id) }}">Quiero más info →</a>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% endblock %}

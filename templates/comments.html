@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="gotham-black">Comentarios</h2>
+      <p class="muted gotham-book">Deja tu comentario y revisa los mensajes de la comunidad.</p>
+    </div>
+<a class="btn btn-ghost gotham-medium" href="{{ url_for('index') }}">
+  ← Volver al inicio
+</a>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="alerts">
+          {% for category, message in messages %}
+            <div class="alert {{ category }}">{{ message }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <div class="contact-grid">
+      <div class="card">
+        <h3 class="gotham-bold">Deja tu comentario</h3>
+       <form method="POST" action="{{ url_for('comentarios') }}">
+
+          <label>Nombre
+            <input name="nombre" type="text" required>
+          </label>
+          <label>Comentario
+            <textarea name="comentario" rows="5" required></textarea>
+          </label>
+          <button class="btn btn-primary gotham-bold" type="submit">Enviar comentario</button>
+        </form>
+      </div>
+
+      <div class="card">
+        <h3 class="gotham-bold">Últimos comentarios</h3>
+        <div style="display:grid; gap:10px; margin-top:10px">
+          {% for c in comments %}
+            <div class="card" style="box-shadow:none">
+              <div style="display:flex; justify-content:space-between; gap:10px">
+                <div class="gotham-bold">{{ c.nombre }}</div>
+                <div class="muted small">{{ c.fecha }}</div>
+              </div>
+              <div class="muted gotham-book" style="margin-top:6px">{{ c.comentario }}</div>
+            </div>
+          {% else %}
+            <p class="muted gotham-book">Aún no hay comentarios. Sé el primero.</p>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

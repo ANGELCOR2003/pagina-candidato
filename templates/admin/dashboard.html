@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="gotham-black">Panel Administrador</h2>
+      <p class="muted gotham-book">Gestiona noticias, inscritos y comentarios.</p>
+      <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px">
+        <a class="btn btn-primary gotham-bold" href="{{ url_for('admin_news_list') }}">Administrar noticias</a>
+        <a class="btn btn-ghost gotham-medium" href="{{ url_for('admin_signups') }}">Ver inscritos</a>
+        <a class="btn btn-ghost gotham-medium" href="{{ url_for('admin_comments') }}">Ver comentarios</a>
+        <a class="btn btn-ghost gotham-medium" href="{{ url_for('admin_logout') }}">Salir</a>
+      </div>
+    </div>
+
+    <div class="cards-grid">
+      <div class="card">
+        <div class="gotham-black" style="font-size:1.8rem">{{ stats.news }}</div>
+        <div class="muted gotham-medium">Noticias</div>
+      </div>
+      <div class="card">
+        <div class="gotham-black" style="font-size:1.8rem">{{ stats.signups }}</div>
+        <div class="muted gotham-medium">Inscritos (contacto)</div>
+      </div>
+      <div class="card">
+        <div class="gotham-black" style="font-size:1.8rem">{{ stats.comments }}</div>
+        <div class="muted gotham-medium">Comentarios</div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

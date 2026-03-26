@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="section">
+  <div class="container" style="max-width:520px">
+    <div class="card">
+      <h2 class="gotham-black">Admin Login</h2>
+      <p class="muted gotham-book">Ingresa la clave para administrar.</p>
+
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          <div class="alerts">
+            {% for category, message in messages %}
+              <div class="alert {{ category }}">{{ message }}</div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
+
+      <form class="form" method="POST">
+        <label>Clave
+          <input name="password" type="password" required>
+        </label>
+        <button class="btn btn-primary gotham-bold" type="submit">Entrar</button>
+      </form>
+
+      <p class="muted small" style="margin-top:10px">
+        Tip: cambia la clave con variable de entorno <code>ADMIN_PASSWORD</code>.
+      </p>
+    </div>
+  </div>
+</section>
+{% endblock %}

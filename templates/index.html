@@ -1,0 +1,352 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- Hero -->
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <div class="pill"> DIOS PATRIA Y FAMILIA</div>
+
+      <h1 class="hero-title gotham-ultra">
+        PERCI RIVAS<br>
+        <span class="accent gotham-black">DIPUTADO</span>
+      </h1>
+
+      <p class="hero-subtitle">
+        Una propuesta moderna, cercana y transparente para construir comunidad con resultados.
+      </p>
+
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#voluntario">Hazte Voluntario</a>
+        <a class="btn btn-ghost" href="#manifiesto">Leer Manifiesto</a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-num">+100</div>
+          <div class="stat-label">Actividades</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">+50</div>
+          <div class="stat-label">Voluntarios</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">24/7</div>
+          <div class="stat-label">Cercanía</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-media">
+      <div class="hero-card">
+        <div class="hero-card-img" style="background-image:url('{{ url_for('static', filename='img/PERCI RIVAS.png') }}');"></div>
+        <div class="hero-card-body">
+          <div class="hero-card-title">Mensaje institucional</div>
+          <p class="muted">Este panel puede mostrar una foto del equipo, ciudad o actividad.</p>
+          <a class="link gotham-medium" href="{{ url_for('quien_soy') }}"> ¿Quién soy? → </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <section class="section" id="mision">
+  <div class="container">
+    <div class="section-head">
+      <h2>Misión y pilares</h2>
+      <p class="muted">Tarjetas limpias y modernas, listas para editar.</p>
+    </div>
+
+    <div class="cards-grid">
+      <article class="card">
+        <h3>Misión</h3>
+        <p class="muted">
+          Representar a Ayacucho en el Congreso con gestión, responsabilidad y conocimiento técnico, impulsando leyes que se conviertan en presupuesto, inversión pública y obras concretas, fortaleciendo a los gobiernos regionales y locales para cerrar las brechas históricas que afectan a la región.
+        </p>
+      </article>
+
+      <article class="card">
+        <h3>Visión</h3>
+        <p class="muted">
+          Lograr que Ayacucho cuente con una representación parlamentaria sólida, respetada y eficaz, capaz de incidir en las decisiones nacionales para garantizar desarrollo territorial, estabilidad institucional y políticas públicas sostenidas, dejando atrás la improvisación y la confrontación estéril.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+</section>
+
+
+<!-- Secciones de tarjetas -->
+
+<section class="section" id="mandamientos">
+  <div class="container">
+    <div class="section-head">
+      <h2>PRINCICPALES EJES</h2>
+      <p class="muted">Contenido controlado desde una lista en <code>app.py</code>.</p>
+    </div>
+
+    <div class="list-grid">
+      {% for item in mandamientos %}
+      <div class="list-item">
+        <div class="list-badge">{{ loop.index }}</div>
+        <div class="list-text">{{ item }}</div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Manifiesto con bullets -->
+<section class="section manifesto" id="manifiesto">
+  <div class="container manifesto-grid">
+    <div>
+      <h2>Manifiesto</h2>
+      <p class="muted">
+        Un bloque con bullets para promesas/ideas clave (fácil de leer en móvil).
+      </p>
+      <ul class="gotham-ultra-italic">
+        <li>Priorizar seguridad ciudadana y orden público.</li>
+        <li>Obras con cronograma, presupuesto y responsables.</li>
+        <li>Atención social eficiente y sin burocracia.</li>
+        <li>Transparencia total: informar avances y gastos.</li>
+        <li>Impulso al empleo local y emprendimiento.</li>
+      </ul>
+      <a class="btn btn-primary" href="#contacto">Quiero participar</a>
+    </div>
+
+    <div class="manifesto-panel">
+      <div class="panel-title">Compromiso</div>
+      <p class="muted">
+        “Trabajar con metas claras, escuchar a la gente y rendir cuentas con evidencias.”
+      </p>
+      <div class="mini-kpis">
+        <div class="mini-kpi">
+          <div class="mini-kpi-num">4</div>
+          <div class="mini-kpi-label">Ejes</div>
+        </div>
+        <div class="mini-kpi">
+          <div class="mini-kpi-num">10</div>
+          <div class="mini-kpi-label">Principios</div>
+        </div>
+        <div class="mini-kpi">
+          <div class="mini-kpi-num">1</div>
+          <div class="mini-kpi-label">Equipo</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Hazte Voluntario con fondo + panel blanco -->
+<section class="volunteer" id="voluntario" style="background-image:url('{{ url_for('static', filename='img/volunteer-bg.jpg') }}');">
+  <div class="container volunteer-grid">
+    <div class="volunteer-panel">
+      <h2>Hazte Voluntario</h2>
+
+      <div class="volunteer-image">
+        <img src="{{ url_for('static', filename='img/voluntarios.jpeg') }}" alt="Voluntarios">
+      </div>
+
+      <p class="muted">
+        Súmate a actividades informativas, apoyo comunitario y organización territorial.
+      </p>
+      <div class="two-col">
+        <div class="mini-card">
+          <div class="mini-title">¿Qué harás?</div>
+          <ul class="Gotham-Medium">
+            <li>Apoyo en eventos</li>
+            <li>Difusión responsable</li>
+            <li>Escucha ciudadana</li>
+          </ul>
+        </div>
+        <div class="mini-card">
+          <div class="mini-title">¿Qué necesitas?</div>
+          <ul class="Gotham-Medium">
+            <li>Compromiso</li>
+            <li>Respeto</li>
+            <li>Tiempo (según disponibilidad)</li>
+          </ul>
+        </div>
+      </div>
+      <a class="btn btn-primary" href="#contacto">Inscribirme</a>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonios carrusel -->
+<section class="section" id="testimonios">
+  <div class="container">
+    <div class="section-head">
+      <h2>Testimonios</h2>
+
+      <!-- Link para ver todos (abre nueva pestaña) -->
+      <a class="btn btn-primary gotham-medium"
+   href="{{ url_for('comentarios') }}">
+  Agregar comentario →
+</a>
+    </div>
+
+    <div class="carousel" data-carousel>
+  <button class="carousel-btn" data-prev>‹</button>
+
+  <div class="carousel-track" data-track>
+
+      {# 1) Comentarios reales del público  PRIMERO #}
+      {% for c in comentarios %}
+      <article class="testimonial card">
+        <div class="quote">“</div>
+        <p class="testimonial-text">{{ c.comentario }}</p>
+        <div class="testimonial-meta">
+          <div class="avatar">{{ c.nombre[:1] }}</div>
+          <div>
+            <div class="name">{{ c.nombre }}</div>
+            <div class="muted small">Comentario ciudadano</div>
+          </div>
+        </div>
+      </article>
+      {% endfor %}
+
+      {# 2) Testimonios fijos DESPUÉS #}
+      {% for t in testimonios %}
+      <article class="testimonial card">
+        <div class="quote">“</div>
+        <p class="testimonial-text">{{ t.texto }}</p>
+        <div class="testimonial-meta">
+          <div class="avatar">{{ t.nombre[:1] }}</div>
+          <div>
+            <div class="name">{{ t.nombre }}</div>
+            <div class="muted small">{{ t.cargo }}</div>
+          </div>
+        </div>
+      </article>
+      {% endfor %}
+
+       </div>
+
+  <button class="carousel-btn" data-next>›</button>
+</div>
+</section>
+
+
+<!-- Últimas noticias con cards -->
+<section class="section" id="noticias">
+  <div class="container">
+    <div class="section-head">
+      <h2>Últimas noticias</h2>
+      <p class="muted">Cards con imagen, tag y texto. Datos desde <code>app.py</code>.</p>
+    </div>
+
+    <div class="carousel" data-carousel>
+      <button class="carousel-btn" data-prev aria-label="Anterior">‹</button>
+
+      <div class="carousel-track" data-track>
+        {% for n in noticias %}
+        <article class="news-card news-slide">
+          {% if n.media_type == "video" and n.media_path %}
+            <video class="news-video" controls playsinline preload="metadata">
+              <source src="{{ url_for('static', filename=n.media_path) }}">
+            </video>
+
+          {% elif n.media_path %}
+            <div class="news-img"
+                 style="background-image:url('{{ url_for('static', filename=n.media_path) }}');">
+            </div>
+
+          {% elif n.imagen %}
+            <div class="news-img"
+                 style="background-image:url('{{ url_for('static', filename='img/' ~ n.imagen) }}');">
+            </div>
+          {% endif %}
+
+          <div class="news-body">
+            <div class="news-top">
+              <span class="tag">{{ n.tag }}</span>
+              <span class="muted small">{{ n.fecha }}</span>
+            </div>
+            <h3 class="news-title">{{ n.titulo }}</h3>
+            <p class="muted">{{ n.resumen }}</p>
+            <a class="btn btn-primary link" href="{{ url_for('noticia_detalle', noticia_id=n.id) }}">Ver Noticia →</a>
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+
+      <button class="carousel-btn" data-next aria-label="Siguiente">›</button>
+    </div>
+  </div>
+</section>
+
+<!-- Contacto con formulario -->
+<section class="section contact" id="contacto">
+  <div class="container contact-grid">
+    <div>
+      <h2>Contacto</h2>
+      
+
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          <div class="alerts">
+            {% for category, message in messages %}
+              <div class="alert {{ category }}">{{ message }}</div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
+
+      <form class=" form " method="POST" action="{{ url_for('contact') }}">
+        <label>
+          Nombre
+          <input class= "gotham-book" name="nombre" type="text " placeholder="Tu nombre " required>
+        </label>
+
+        <label>
+          Correo
+          <input class= "gotham-book"  name="email" type="email" placeholder="tucorreo@ejemplo.com" required>
+        </label>
+
+        <label>
+          Mensaje
+          <textarea class= "gotham-book" name="mensaje" rows="5" placeholder="Escribe tu mensaje..." required></textarea>
+        </label>
+
+        <label>
+  Celular (opcional)
+  <input 
+    class="gotham-book"
+    name="celular"
+    type="tel"
+    placeholder="numero celular"
+    pattern="[0-9]{9}"
+    maxlength="9"
+    inputmode="numeric"
+    oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+
+    
+  >
+</label>
+
+        <label style="display:flex; gap:10px; align-items:center; font-weight:800">
+          <input type="checkbox"  name="es_voluntario" class= "Gotham-bold">
+          Quiero inscribirme como voluntario
+        </label>
+
+        <button class="btn btn-primary" type="submit">Enviar</button>
+      </form>
+    </div>
+
+    <div class="contact-side card">
+      <h3>Canales</h3>
+      <p class="muted">Agrega aquí redes, dirección, horarios, etc.</p>
+      <div class="contact-items gotham-bold">
+        <div class= "contact-item"><span class="dot"></span> WhatsApp: +51 922 695 289</div>
+        <div class="contact-item"><span class="dot"></span> Email: contacto@ejemplo.com</div>
+        <div class="contact-item"><span class="dot"></span> Oficina: Ayacucho</div>
+      </div>
+      <div class="divider"></div>
+      <p class="muted small">
+        Tip: si quieres que el formulario mande correo real, luego se agrega SMTP o un servicio (SendGrid, Mailgun).
+      </p>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

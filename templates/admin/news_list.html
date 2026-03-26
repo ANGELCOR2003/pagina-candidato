@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="section">
+  <div class="container">
+
+    <div class="section-head">
+      <h2 class="gotham-black">Noticias</h2>
+
+      <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px">
+        <a class="btn btn-primary gotham-bold"
+           href="{{ url_for('admin_news_new') }}">
+          + Nueva noticia
+        </a>
+
+        <a class="btn btn-ghost gotham-medium"
+           href="{{ url_for('admin_dashboard') }}">
+          Volver
+        </a>
+      </div>
+    </div>
+
+    {# Flash messages #}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="alerts">
+          {% for category, message in messages %}
+            <div class="alert {{ category }}">{{ message }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <div class="news-grid">
+      {% for n in news %}
+      <article class="news-card">
+        <div class="news-body">
+
+          <div class="news-top">
+            <span class="tag">{{ n.tag }}</span>
+            <span class="muted small">{{ n.fecha }}</span>
+          </div>
+
+          <h3 class="news-title gotham-bold">
+            {{ n.titulo }}
+          </h3>
+
+          <p class="muted gotham-book">
+            {{ n.resumen }}
+          </p>
+
+          <p class="muted small">
+            Imagen: <code>{{ n.imagen }}</code>
+          </p>
+
+          <div style="display:flex; gap:10px; margin-top:10px; flex-wrap:wrap">
+            <a class="btn btn-ghost gotham-medium"
+               href="{{ url_for('admin_news_edit', item_id=n.id) }}">
+              Editar
+            </a>
+
+            <form method="POST"
+                  action="{{ url_for('admin_news_delete', item_id=n.id) }}"
+                  onsubmit="return confirm('¿Eliminar esta noticia?');">
+              <button class="btn btn-ghost gotham-medium" type="submit">
+                Eliminar
+              </button>
+            </form>
+          </div>
+
+        </div>
+      </article>
+      {% else %}
+        <p class="muted gotham-book">
+          No hay noticias todavía.
+        </p>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+{% endblock %}

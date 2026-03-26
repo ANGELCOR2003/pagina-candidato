@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="gotham-black">Inscritos / Contactos</h2>
+      <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px">
+        <a class="btn btn-ghost gotham-medium" href="{{ url_for('admin_dashboard') }}">Volver</a>
+      </div>
+    </div>
+
+    <div class="card" style="overflow:auto">
+      <table style="width:100%; border-collapse:collapse; min-width:900px">
+        <thead>
+          <tr>
+            <th style="text-align:left; padding:10px; border-bottom:1px solid rgba(2,8,23,.08)">Fecha</th>
+            <th style="text-align:left; padding:10px; border-bottom:1px solid rgba(2,8,23,.08)">Nombre</th>
+            <th style="text-align:left; padding:10px; border-bottom:1px solid rgba(2,8,23,.08)">Email</th>
+            <th style="text-align:left; padding:10px; border-bottom:1px solid rgba(2,8,23,.08)">Celular</th>
+            <th style="text-align:left; padding:10px; border-bottom:1px solid rgba(2,8,23,.08)">Voluntario</th>
+            <th style="text-align:left; padding:10px; border-bottom:1px solid rgba(2,8,23,.08)">Mensaje</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for s in signups %}
+          <tr>
+            <td style="padding:10px; border-bottom:1px solid rgba(2,8,23,.06)">{{ s.created_at.strftime("%d/%m/%Y %H:%M") if s.created_at else "" }}</td>
+            <td style="padding:10px; border-bottom:1px solid rgba(2,8,23,.06)">{{ s.nombre }}</td>
+            <td style="padding:10px; border-bottom:1px solid rgba(2,8,23,.06)">{{ s.email }}</td>
+            <td style="padding:10px; border-bottom:1px solid rgba(2,8,23,.06)">{{ s.celular }}</td>
+            <td style="padding:10px; border-bottom:1px solid rgba(2,8,23,.06)">{{ "Sí" if s.es_voluntario else "No" }}</td>
+            <td style="padding:10px; border-bottom:1px solid rgba(2,8,23,.06)">{{ s.mensaje }}</td>
+          </tr>
+          {% else %}
+          <tr><td class="muted" style="padding:10px">No hay inscritos aún.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+{% endblock %}

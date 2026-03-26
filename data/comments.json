@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "nombre": "ANGEL",
+    "comentario": "el desarollo de la poblacion",
+    "fecha": "2026-01-26 18:03:35"
+  },
+  {
+    "id": 2,
+    "nombre": "MARCIN",
+    "comentario": "ME PARECE MUY BUNA OPCION",
+    "fecha": "2026-01-26 18:25:03"
+  },
+  {
+    "id": 3,
+    "nombre": "MARCIN",
+    "comentario": "ME PARECE MUY BUNA OPCION",
+    "fecha": "2026-01-26 18:25:17"
+  },
+  {
+    "id": 4,
+    "nombre": "DEREK",
+    "comentario": "ME GUSTA EL ENFOQUE DE ESTE PARTIDO",
+    "fecha": "2026-01-27 10:00:24"
+  }
+]
